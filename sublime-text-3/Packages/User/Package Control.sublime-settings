@@ -1,0 +1,36 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Agola Color Schemes",
+		"BracketHighlighter",
+		"CMake",
+		"Colorsublime",
+		"Cython",
+		"Dockerfile Syntax Highlighting",
+		"Dracula Color Scheme",
+		"Git",
+		"GitGutter",
+		"Github Color Theme",
+		"HexViewer",
+		"HTMLBeautify",
+		"Markdown Preview",
+		"MarkdownEditing",
+		"Monokai - Spacegray",
+		"Package Control",
+		"Python Improved",
+		"requirementstxt",
+		"Sublime Tutor",
+		"SublimeCodeIntel",
+		"SublimeLinter-pydocstyle",
+		"Theme - Afterglow",
+		"Theme - Brogrammer",
+		"Theme - Flatland",
+		"Theme - SoDaReloaded",
+		"Theme - Spacegray",
+		"Tomorrow Color Schemes"
+	]
+}
