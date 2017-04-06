@@ -1,0 +1,19 @@
+# Common commands aliased with spaces to keep shell history clean
+alias cd=' cd'
+alias lm=' ls -alh --color=auto'
+alias df=' df -h'
+alias clear=' clear'
+alias fuck='sudo $(history -p \!\!)'
+alias flake8='flake8 --max-line-length=95'
+alias nn=' nautilus'
+alias du=' du -hs'
+alias meteo=' ansiweather'
+alias mkvirtualenv='mkvirtualenv --system-site-packages'
+alias cp='rsync -aP'
+alias ud='sudo apt-get update && sudo apt-get upgrade'
+
+function wttr() {
+  if [ "$1" ]; then curl wttr.in/"$1";
+  else command curl wttr.in/Paris;
+  fi
+}
