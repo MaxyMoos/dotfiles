@@ -1,0 +1,55 @@
+[user]
+  name = MaxyMoos
+  email = [REDACTED] 
+[diff]
+  tool = vimdiff
+  algorithm = patience
+[pager]
+  diff =
+[color]
+  ui = auto
+[core]
+  excludesfile = ~/.gitignore_global
+[alias]
+  st = status
+  ci = commit
+  co = checkout
+  rb = rebase
+  cp = cherry-pick
+  ski = stash --keep-index
+  rha = reset --hard
+  pu = "!f() { git push -u ${1:-origin} `git symbolic-ref --short HEAD`; }; f"
+  assume = update-index --assume-unchanged
+  unassume = update-index --no-assume-unchanged
+  assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+  st = status
+
+  branches = branch -a
+  tags = tag
+  stashes = stash list
+
+  unstage = reset -q HEAD --
+  discard = checkout --
+  precommit = diff --cached --diff-algorithm=minimal -w
+
+  lg = !"git lg1"
+  lg1 = !"git lg1-specific --all"
+  lg2 = !"git lg2-specific --all"
+  lg3 = !"git lg3-specific --all"
+
+  lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+  lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+  lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
+
+#  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+#  slg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --stat
+  l = log --pretty=oneline --abbrev-commit
+  up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
+  d = diff
+  ds = diff --staged
+[push]
+	default = simple
+[merge]
+  tool = vimdiffex
+[mergetool.vimdiffex]
+  cmd = vimdiff -f -d -c \"wincmd J\" -c 'call map(filter(range(1, bufnr(\"$\")), \"bufexists(v:val)\"), \"setbufvar(v:val, \\\"&modifiable\\\", v:val == 1)\")' \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
