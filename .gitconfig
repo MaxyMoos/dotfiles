@@ -18,6 +18,7 @@
   cp = cherry-pick
   ski = stash --keep-index
   rha = reset --hard
+  chk = "!git diff --name-only | xargs -L1 flake8 && git diff --name-only | xargs -L1 pydocstyle"
   pu = "!f() { git push -u ${1:-origin} `git symbolic-ref --short HEAD`; }; f"
   assume = update-index --assume-unchanged
   unassume = update-index --no-assume-unchanged
