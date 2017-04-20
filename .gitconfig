@@ -18,7 +18,10 @@
   cp = cherry-pick
   ski = stash --keep-index
   rha = reset --hard
-  chk = "!f() { if [ $(git diff --staged --name-only) ]; then git diff --staged --name-only | xargs -L1 flake8 && git diff --staged --name-only | xargs -L1 pydocstyle; else echo "All good"; exit 0; fi; }; f"
+  # `git chk` below doesn't work in many cases, apparently because git aliases use /bin/sh
+  # A good solution is to define the calls as a pre-commit hook, which, as a separate file,
+  # can be called with any shell.
+  # chk = "!f() { if [ $(git diff --staged --name-only) ]; then git diff --staged --name-only | xargs -L1 flake8 && git diff --staged --name-only | xargs -L1 pydocstyle; else echo "All good"; exit 0; fi; }; f"
   pu = "!f() { git push -u ${1:-origin} `git symbolic-ref --short HEAD`; }; f"
   assume = update-index --assume-unchanged
   unassume = update-index --no-assume-unchanged
