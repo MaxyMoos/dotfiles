@@ -1,19 +1,82 @@
-# Common commands aliased with spaces to keep shell history clean
+# Common commands aliased with spaces to keep shell history clean
 alias cd=' cd'
 alias lm=' ls -alh --color=auto'
 alias df=' df -h'
-alias clear=' clear'
-alias fuck='sudo $(history -p \!\!)'
-alias flake8='flake8 --max-line-length=95'
+alias ls=' ls'
 alias nn=' nautilus'
 alias du=' du -hs'
-alias meteo=' ansiweather'
+
+# Delete all those nasty pyc files
+alias rmpyc=' find . -name "*.pyc" -delete'
+
+# Cleanup terminal window
+alias clear=' clear'
+
+# Redo previous command using sudo
+alias fuck='sudo $(history -p \!\!)'
+
+# Check PEP8 with default param
+alias flake8='flake8 --max-line-length=95'
+
+# Get week number
+alias week='date +%V'
+
+# IP addresses
+alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="sudo ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+
+# Intuitive map function
+# For example, to list all directories that contain a certain file:
+# find . -name .gitignore | map dirname
+alias map="xargs -n1"
+
+# Get RAM stats
+alias ramstats="ps -aux | awk '{SUM+=\$4} END {print SUM \"%% RAM usage\"}'"
+
+# Lock screen
+alias afk="i3lock -c 000000"
+
 alias mkvirtualenv='mkvirtualenv --system-site-packages'
 alias cp='rsync -aP'
 alias ud='sudo apt-get update && sudo apt-get upgrade'
 
+# SQL statements formatting
+alias sqlf='printf "`xclip -o`" | sqlformat -r -'
+
+# FUNCTIONS
 function wttr() {
   if [ "$1" ]; then curl wttr.in/"$1";
-  else command curl wttr.in/Paris;
+  else command curl wttr.in/Geneva;
+  fi
+}
+
+function weather() {
+  if [ "$1" ]; then $HOME/golang/bin/weather "$1";
+  else $HOME/golang/bin/weather -l Geneva, Switzerland;
+  fi
+}
+
+function notes() {
+  if [ ! -z "$1" ]; then
+    # Using the "$@" here will take all parameters passed into
+    # this function so we can place everything into our file.
+    echo "$@" >> "$HOME/notes.md"
+  else
+    # If no arguments were passed we will take stdin and place
+    # it into our notes instead.
+    cat - >> "$HOME/notes.md"
+  fi
+ }
+
+function is_infomaniak_down() {
+  OUTPUT=$(sleep 0.5 | netcat mail.infomaniak.com 143 -q 1 | grep "* OK")
+  BOLD='\033[1;m'
+  GREEN='\033[0;32m'
+  RED='\033[0;31m'
+  NC='\033[0;m'
+  if [[ $OUTPUT ]]; then
+    echo "${GREEN}Infomaniak seems up!${NC}"
+  else
+    echo "${RED}Infomaniak seems down!${NC}"
   fi
 }
