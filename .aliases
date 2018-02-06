@@ -6,6 +6,9 @@ alias ls=' ls'
 alias nn=' nautilus'
 alias du=' du -hs'
 
+# Have a cat-like command with syntax highlighting
+alias ccat=' pygmentize -g'
+
 # Delete all those nasty pyc files
 alias rmpyc=' find . -name "*.pyc" -delete'
 
@@ -32,6 +35,7 @@ alias map="xargs -n1"
 
 # Get RAM stats
 alias ramstats="ps -aux | awk '{SUM+=\$4} END {print SUM \"%% RAM usage\"}'"
+alias ram2="ps -aux | awk '{SUM+=\$4} END {print \"RAM: \" SUM \"%%\"}'"
 
 # Lock screen
 alias afk="i3lock -c 000000"
