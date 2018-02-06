@@ -60,5 +60,8 @@ setopt NO_NOMATCH
 # AltGr + space is NOT a non-breaking space anymore
 setxkbmap -option "nbsp:none"
 
+# Disable Python bytecode generation on execution
+export PYTHONDONTWRITEBYTECODE=1
+
 # Enable zsh syntax highlighting
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
